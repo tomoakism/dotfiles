@@ -1,4 +1,6 @@
-""" ---------------参考サイト---------------
+"-------------------------
+" 参考サイト
+"-------------------------
 " https://maku77.github.io/vim/settings/auto-indent.html
 " https://qiita.com/tashua314/items/101f1bec368c75a90251
 " https://www.server-world.info//query?os=Debian_11&p=initial_conf&f=7
@@ -7,7 +9,11 @@
 " https://qiita.com/_snow_narcissus/items/f1633ecc40814acca4cf
 " https://gist.github.com/1508312
 " https://itchyny.hatenablog.com/entry/2014/12/25/090000
- 
+" https://blog.delphinus.dev/2012/10/let-us-use-solarized.html
+
+"-------------------------
+" 環境設定
+"-------------------------
 " vi互換の動作を無効化
 set nocompatible
 
@@ -17,18 +23,28 @@ set encoding=utf-8
 " ファイルタイプ検出を有効にする
 filetype on
 
-
-""" ---------------表示関係---------------
+"--------------------------
+" 表示設定
+"--------------------------
 " 色
+"set t_Co=256
+
+syntax enable
+
 " 背景の設定
 set background=dark
 
 " カラースキーム設定
-syntax enable
 colorscheme solarized
+
+" これがないとsolarizedがぼやける
+let g:solarized_termtrans=1
 
 " 行番号の表示
 set number
+
+" 行数の色がおかしいから調整、solarizedのconfigみて直して
+highlight LineNr ctermfg=241 ctermbg=235
 
 " syntaxが有効の場合のコメント文の色を変更
 highlight Comment ctermfg=LightCyan
@@ -49,7 +65,19 @@ augroup vimrc
   autocmd FileType c,cpp,java setl cindent
 augroup END  
 
-"" ステータスライン
+" ウィンドウサイズで折り返し
+set wrap
+
+" 一行の文字数が多くてもきちんと描画
+set display=lastline
+
+" 補完メニューの高さ設定
+set pumheight=10
+
+
+"-------------------------
+" ステータスライン
+"-------------------------
 " ファイル名表示
 set statusline=%F
 
@@ -74,16 +102,9 @@ set statusline+=%l/%L
 " ステータスライン常時表示
 set laststatus=2
 
-" ウィンドウサイズで折り返し
-set wrap
-
-" 一行の文字数が多くてもきちんと描画
-set display=lastline
-
-" 補完メニューの高さ設定
-set pumheight=10
-
-""" ---------------編集関係---------------
+"-------------------------
+" 編集
+"-------------------------
 " 括弧入力時対応括弧にカーソルが一瞬飛ぶ
 set showmatch
 
@@ -109,8 +130,9 @@ set hidden
 "新しく開く代わりにすでに開いてあるバッファを開く
 set switchbuf=useopen
 
-
-""" ---------------検索関係---------------
+"-------------------------
+"検索関係
+"-------------------------
 " 検索時大文字/小文字の区別無効化
 set ignorecase
 
@@ -130,12 +152,14 @@ set incsearch
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
 
 
-""" ---------------マクロ及びキー設定---------------
+"-------------------------
+" キーバインド
+"-------------------------
 "Cntl+eでカーソル文末 
-noremap <C-e> <Esc>$a
+noremap <C-e> <Esc>$
  
 "Cntl+aでカーソル文頭 
-noremap <C-a> <Esc>^a 
+noremap <C-a> <Esc>^ 
 
 "+で数字インクリメント
 nnoremap + <C-a> 
